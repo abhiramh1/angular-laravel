@@ -19,8 +19,7 @@ export class RegisterComponent implements OnInit {
       'Content-Type': 'application/json',
       'Accept': 'q=0.8;application/json;q=0.9'
     });
-    this.options = new RequestOptions({ headers: this.headers });
-    this.createService("http://0.0.0.0:9000/api/register", this.options);
+    this.options = new RequestOptions({ headers: this.headers });    
   }
 
   onSubmit(form: NgForm) {
