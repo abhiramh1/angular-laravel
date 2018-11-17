@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Http, Response, Headers, RequestOptions} from '@angular/http'; 
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   headers: Headers;
   options: RequestOptions;
 
-  constructor(private http: Http, private toastrService: ToastrService) {}
+  constructor(private http: Http, private toastrService: ToastrService ) {}
 
   ngOnInit() {
     this.headers = new Headers({

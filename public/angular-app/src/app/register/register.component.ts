@@ -20,11 +20,11 @@ export class RegisterComponent implements OnInit {
       'Content-Type': 'application/json',
       'Accept': 'q=0.8;application/json;q=0.9'
     });
-    this.options = new RequestOptions({ headers: this.headers });    
-  }
+    this.options = new RequestOptions({ headers: this.headers });
+    }
 
   onSubmit(form: NgForm) {
-    this.createService("http://0.0.0.0:9000/api/register", form.value);
+    this.createService('http://0.0.0.0:9000/api/register', form.value);
   }
 
   private createService(url, param): Promise<any> {
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private extractData(res: Response) {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   private handleError(error: any): Promise<any> {
