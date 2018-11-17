@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class LoginComponent implements OnInit {
-  public show: boolean = false;
+  public show: false;
   headers: Headers;
   options: RequestOptions;
 
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.createService("http://0.0.0.0:9000/api/login", form.value);    
-  }
+    this.createService('http://0.0.0.0:9000/api/login', form.value);
+    }
 
   private createService(url, param): Promise<any> {
     const body = JSON.stringify(param);
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   private extractData(res: Response) {
     const body = res.json();
-    if(body.status) {
+    if (body.status) {
       this.toastrService.success(body.message);
     } else {
       this.toastrService.error(body.message);

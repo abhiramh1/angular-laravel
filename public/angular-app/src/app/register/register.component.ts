@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  public show: boolean = false;
+  public show: false;
   headers: Headers;
   options: RequestOptions;
   constructor(private http: Http, private router: Router) { }
