@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions} from '@angular/http'; 
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   public show: boolean = false;
   headers: Headers;
   options: RequestOptions;
-  constructor(private http: Http) { }
+
+  constructor(private http: Http, private toastrService: ToastrService) {}
 
   ngOnInit() {
     this.headers = new Headers({
@@ -22,21 +25,27 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.createService("http://0.0.0.0:9000/api/login", form.value);
+    this.createService("http://0.0.0.0:9000/api/login", form.value);    
   }
 
   private createService(url, param): Promise<any> {
     const body = JSON.stringify(param);
     return this.http
-      .post(url, body, this.options)
-      .toPromise()
-      .then(this.extractData)
-      .catch(this.handleError);
-  }
+        .post(url, body, this.options)
+        .toPromise()
+        .then(result => {
+          this.extractData(result);
+        })
+        .catch(this.handleError);
+}
 
   private extractData(res: Response) {
     const body = res.json();
-    // console.log(this.show);
+    if(body.status) {
+      this.toastrService.success(body.message);
+    } else {
+      this.toastrService.error(body.message);
+    }
     return body || {};
   }
 

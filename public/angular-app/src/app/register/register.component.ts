@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
   public show: boolean = false;
   headers: Headers;
   options: RequestOptions;
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   ngOnInit() {
     this.headers = new Headers({
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private extractData(res: Response) {
+    this.router.navigate(['/login'])
   }
 
   private handleError(error: any): Promise<any> {
